@@ -1,0 +1,29 @@
+DOWNLOADS
+> MariaDB		https://mariadb.org/
+> Apache		https://httpd.apache.org/
+> PHP			https://www.php.net/
+> PHPMyAdmin	https://www.phpmyadmin.net/
+
+SETTING MARIADB
+> Terminal-1	:	Install MariaDB		:	/bin/mysql_install_db.exe
+> Terminal-1	:	Jalankan			:	/bin/mysqld.exe --console
+> Terminal-2	:	Check versi			:	/bin/mysql --version
+> Terminal-2	:	Set root password	: 	/bin/mysqladmin -u root  flush-privileges password "SECRET"
+> Terminal-2	:	Login				:	/bin/mysql -u root -p
+> Buat file BAT untuk menjalankan MariaDB
+
+SETTING APACHE & PHP
+> httpd.conf	:	Set server-root ke folder apache 
+> httpd.conf	:	Referensikan PHP dengan Add Module
+> httpd.conf	:	Set default document ke index.php
+> Rename atau Save As php.ini-development ke php.ini
+> php.ini		:	Arahkan extension_dir ke folder ext PHP
+> php.ini		:	Aktifkan extension MySQL (untuk MariaDB)
+> Buat file BAT untuk menjalankan Apache
+
+SETTING PHPMYADMIN
+> Set listening port Apache ke port 81 untuk PHPMyAdmin
+> Referensikan httpd-vhosts.conf untuk port-based Virtual Hosting
+> Tambahkan definisi virtual hosting untuk PHPMyAdmin di httpd-vhosts.conf (port 81)
+
+

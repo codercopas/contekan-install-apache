@@ -1,0 +1,42 @@
+> REFERENSI MODULE PHP DI httpd.conf
+
+LoadModule php_module "d:\_apache_mariadb_php\php815\php8apache2_4.dll"
+AddHandler application/x-httpd-php .php
+
+# configure the path to php.ini
+PHPIniDir "d:\_apache_mariadb_php\php815"
+
+
+> DEFINISI VHOST UNTUK PHPMyAdmin
+
+<VirtualHost *:81>
+    ServerAdmin webmaster@dummy-host.example.com
+    DocumentRoot "d:\_apache_mariadb_php\phpmyadmin"
+    ServerName dummy-host.example.com
+    ServerAlias www.dummy-host.example.com
+    ErrorLog "logs/phpmyadmin-error.log"
+    CustomLog "logs/phpmyadmin-access.log" common
+	<Directory "d:\_apache_mariadb_php\phpmyadmin">
+		Options Indexes FollowSymLinks
+		AllowOverride All
+		Require all granted
+	</Directory>
+</VirtualHost>
+
+> TEST KONEKSI MARIADB
+
+function open_db_connection($host = 'localhost', $dbname = 'mysql', $username = 'root', $password = 'toor') {
+	$ret = NULL; 
+	try {
+		$ret = new PDO('mysql:host='.$host.';dbname='.$dbname, $username, $password, array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"));
+		$ret->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+		echo "Connection Successful";
+	} catch (PDOException $pe) {
+		echo 'Could not connect to the database $dbname :' . $pe->getMessage();
+	}	
+	return $ret;
+}
+
+open_db_connection();
+	
+	
